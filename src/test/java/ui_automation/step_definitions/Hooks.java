@@ -7,6 +7,8 @@ import io.cucumber.java.Before;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import ui_automation.utilities.BrowserFactory;
 import ui_automation.utilities.Driver;
 
@@ -20,13 +22,13 @@ public class Hooks {
         driver= BrowserFactory.createInstance();
         Driver.getInstance().setDriver(driver);
         driver=Driver.getInstance().getDriver();
-
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 
     @After
     public void tearDown(Scenario scenario) {
+
         if (scenario.isFailed()) {
             final byte[] screenshot = ((TakesScreenshot) Driver.getInstance().getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenshot, "image/png");

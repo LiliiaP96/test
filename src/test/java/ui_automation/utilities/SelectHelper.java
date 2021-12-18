@@ -52,7 +52,7 @@ public class SelectHelper extends  GenericHelper{
 
     public String getSelectedValue(WebElement element) {
         String value = new Select(element).getFirstSelectedOption().getText();
-        oLog.info("WebELement : " + element + " Value : "+ value);
+        oLog.info("WebElement : " + element + " Value : "+ value);
         return value;
     }
 

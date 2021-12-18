@@ -36,7 +36,14 @@ public class ExcelUtility {
             return"";
         }
     }
-
+    public static double getCellDataAsDouble(int RowNum, int ColNum) throws Exception{
+        try{
+            cell = workSheet.getRow(RowNum).getCell(ColNum);
+            return cell.getNumericCellValue();
+        }catch (Exception e){
+            return 0.0;
+        }
+    }
 
     public static void setCellData(String path, String value,  int RowNum, int ColNum) throws Exception {
         try{
