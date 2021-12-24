@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ui_automation.pages.PracticePage;
@@ -19,7 +20,9 @@ import org.apache.log4j.Logger;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
+import java.util.NoSuchElementException;
 
 public class PracticeSteps {
     PracticePage  practicePage = new PracticePage();
@@ -43,6 +46,8 @@ static final Logger oLog = LogManager.getLogger(PracticeSteps.class);
         }
 
         oLog.info("Successfully Clicked on Downloads Button");
+
+
     }
 
 }
