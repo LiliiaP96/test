@@ -25,7 +25,7 @@ public class MBExpensesSteps {
     @Given("user navigates to MealB landing page")
     public void user_navigates_to_MealB_landing_page() {
         log.info("Navigating to the Downloads Page");
-        String mbLoginUrl = ConfigurationReader.getProperty("ui-config.properties","mealb.login.url");
+        String mbLoginUrl = ConfigurationReader.getProperty("ui-config.properties","mealb.url");
         Driver.getInstance().getDriver().get(mbLoginUrl);
     }
 

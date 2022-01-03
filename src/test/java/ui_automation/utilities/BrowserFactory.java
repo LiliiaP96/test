@@ -25,9 +25,6 @@ public class BrowserFactory {
                 if (driver == null) {
                     if(System.getProperty("browser")==null){
                         WebDriverManager.chromedriver().setup();
-                        driver = new ChromeDriver();
-
-                                                WebDriverManager.chromedriver().setup();
                         HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
                         chromePrefs.put("profile.default_content_settings.popups", 0);
                         chromePrefs.put("download.default_directory",
@@ -46,7 +43,7 @@ public class BrowserFactory {
                             case "chromeRemote":
                                 ChromeOptions chrOptions = new ChromeOptions();
                                 try {
-                                    driver = new RemoteWebDriver(new URL("http://54.88.214.189:4444/wd/hub"), chrOptions);
+                                    driver = new RemoteWebDriver(new URL("http://184.72.186.208:4444/wd/hub"), chrOptions);
                                 } catch (MalformedURLException e) {
                                     e.printStackTrace();
                                 }
@@ -62,7 +59,7 @@ public class BrowserFactory {
                             case "firefoxRemote":
                                 FirefoxOptions firOptions = new FirefoxOptions();
                                 try {
-                                    driver = new RemoteWebDriver(new URL("http://54.88.214.189:4444/wd/hub"), firOptions);
+                                    driver = new RemoteWebDriver(new URL("http://184.72.186.208:4444/wd/hub"), firOptions);
                                 } catch (MalformedURLException e) {
                                     e.printStackTrace();
                                 }

@@ -2,8 +2,6 @@ package ui_automation.step_definitions;
 
 import io.cucumber.java.en.*;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import ui_automation.pages.OhrmEmployeesPage;
 import ui_automation.utilities.*;
 public class OhrmEmployeesStep {

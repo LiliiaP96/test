@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import ui_automation.utilities.ConfigurationReader;
 import ui_automation.utilities.Driver;
 
 public class MBExpensesPage {
@@ -13,7 +14,7 @@ public class MBExpensesPage {
         driver= Driver.getInstance().getDriver();
         PageFactory.initElements(driver, this);
     }
-s
+
     @FindBy(name = "usernameOrEmailAddress")
     public WebElement mbUsername;
 

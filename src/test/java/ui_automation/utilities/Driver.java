@@ -10,7 +10,6 @@ public class Driver {
     public static Driver getInstance(){
         return instance;
     }
-
     ThreadLocal<WebDriver> driver=new ThreadLocal<WebDriver>();// thread local driver object for webdriver
 
     public WebDriver getDriver(){

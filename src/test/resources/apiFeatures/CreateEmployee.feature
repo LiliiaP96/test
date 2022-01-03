@@ -1,6 +1,6 @@
 Feature: Create new employee
 
-@PostDummy
+#@PostDummy
 Scenario Outline: Post call
 Given User create request body with "<name>" , "<salary>" , "<age>"
 When User sumbits request and gets response
