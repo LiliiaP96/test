@@ -1,5 +1,8 @@
 package ui_automation.pages;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,8 +10,10 @@ import org.openqa.selenium.support.PageFactory;
 import ui_automation.utilities.ConfigurationReader;
 import ui_automation.utilities.Driver;
 
-public class MBExpensesPage {
+import java.util.List;
 
+public class MBExpensesPage {
+    static final Logger log = LogManager.getLogger(MBExpensesPage.class);
     WebDriver driver;
     public MBExpensesPage(){
         driver= Driver.getInstance().getDriver();
@@ -53,6 +58,15 @@ public class MBExpensesPage {
     @FindBy (id = "ProjectName")
     public WebElement projectName;
 
+    @FindBy (id = "ExpenseDateTime")
+    public WebElement dateField;
+
+    @FindBy (xpath = "//*[contains(@class,'save-button')]")
+    public WebElement saveButton;
+
+    @FindBy (id = "expenses-table")
+    public WebElement expenseTable;
+
     public void login () throws Exception {
         String username = ConfigurationReader.getProperty("ui-config.properties","mealb.username");
         String password = ConfigurationReader.getProperty("ui-config.properties","mealb.password");
@@ -82,7 +96,65 @@ public class MBExpensesPage {
         Thread.sleep(3000);
     }
 
+    public void completeMealEntExpenseModal (String date, String expenseNameFromExcel, double amountFromExcel,
+                                             String businessPurposeFromExcel, String companyFromExcel, String projectNameFromExcel) throws InterruptedException {
+        dateField.click();
+        Thread.sleep(1000);
+        Driver.getInstance().getDriver().findElement(By.xpath("(//*[@aria-label='"+date+"'])[3]")).click();
+        mealEntModalExpenseNameTextField.sendKeys(expenseNameFromExcel);
+        amount.sendKeys(String.valueOf(amountFromExcel));
+        businessPurpose.sendKeys(businessPurposeFromExcel);
+        company.sendKeys(companyFromExcel);
+        projectName.sendKeys(projectNameFromExcel);
+    }
 
+    public void verifyNewExpense (String expenseNameFromExcel) {
+//        List<WebElement> expenseNames = Driver.getInstance().getDriver().findElements
+//                (By.xpath("//table[@id='expenses-table']/tbody/tr/td[2]"));
+        List<WebElement> expenseNamesLocators = expenseTable.findElements(By.xpath("/tbody/tr/td[2]"));
 
+        for (WebElement expenseNameLocator : expenseNamesLocators) {
+            String expenseNameFromUI = expenseNameLocator.getText();
+
+            if (expenseNameFromUI.equals(expenseNameFromExcel)) {
+                log.info("New expense was successfully displayed on the Expenses Table");
+                break;
+            }
+        }
+    }
+
+    public void deleteExistingRecord (String expenseNameFromExcel) throws Exception {
+//        List<WebElement> expenseNamesLocators = expenseTable.findElements(By.xpath("/tbody/tr/td[2]"));
+        List<WebElement> expenseNamesLocators = Driver.getInstance().getDriver().findElements(
+                By.xpath("//*[@id='expenses-table']/tbody/tr/td[2]"));
+
+        int row = 1;
+
+        for (WebElement expenseNameLocator : expenseNamesLocators) {
+            String expenseNameFromUI = expenseNameLocator.getText();
+
+            if (expenseNameFromUI.equals(expenseNameFromExcel)) {
+                Thread.sleep(2000);
+                Driver.getInstance().getDriver().findElement(By.xpath
+                        ("(//*[starts-with(@id,'checkbox')])["+row+"]")).click();
+                Thread.sleep(2000);
+            }
+
+            row++;
+        }
+        Thread.sleep(3000);
+        Driver.getInstance().getDriver().findElement(By.xpath("//*[contains(@class,'delete-selected-expenses')]")).click();
+        handleModalWindow();
+    }
+
+    public void handleModalWindow () throws Exception {
+        //TODO parametrize this method with modal type and action you want to perform
+        //TODO verify modal icon. Note: you can use getAttribute() method
+        //TODO verify confirmation messages
+        //TODO verify list of buttons available for that modal window
+        Thread.sleep(3000);
+        Driver.getInstance().getDriver().findElement(By.xpath("//button[@class='confirm']")).click();
+        Thread.sleep(3000);
+    }
 
 }
