@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         "json:target/cucumber.json"},
         features="src/test/resources/uiFeatures",
         glue="ui_automation.step_definitions",
-        tags={"@downloadRun"},
+        tags={"@MedicalPlan"},
         dryRun = false,
         monochrome = true
 )

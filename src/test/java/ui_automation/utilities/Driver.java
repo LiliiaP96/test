@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 
 public class Driver {
     private Driver(){
-
     }
+
     private static Driver instance=new Driver();
     public static Driver getInstance(){
         return instance;
@@ -22,4 +22,5 @@ public class Driver {
         driver.get().quit();
         driver.remove();
     }
+
 }

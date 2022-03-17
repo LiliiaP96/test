@@ -1,5 +1,7 @@
 package api_automation.RequestBuilder;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+
 public class Employee {
 	@JsonPropertyOrder({"name","salary","age"})
 		private String name;
@@ -23,4 +25,7 @@ public class Employee {
 		public void setAge(String age) {
 			this.age = age;
 		}
+
+
+
 }

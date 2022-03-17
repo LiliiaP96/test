@@ -11,6 +11,8 @@ public class DBUtility {
     private static Statement statement;
     private static ResultSet resultSet;
 
+
+
     public static void openConnection() throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
