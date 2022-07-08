@@ -24,7 +24,6 @@ import java.util.List;
 
 public class MBExpensesSteps {
 
-    //That is my comment
     MBExpensesPage mbExpensePage = new MBExpensesPage();
     static final Logger log = LogManager.getLogger(MBExpensesSteps.class);
 
