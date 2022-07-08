@@ -10,6 +10,7 @@
         <module name="YFrameworkFinalC4" />
         <module name="zk" />
         <module name="YFrameworkFinal" />
+        <module name="test" />
         <module name="YFramework" />
         <module name="NFTDB" />
       </profile>
